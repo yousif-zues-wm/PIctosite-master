@@ -20,7 +20,7 @@ const storage = multer.diskStorage({
 // Init Upload
 const upload = multer({
   storage: storage,
-  limits:{fileSize: 100000000},
+  limits:{fileSize: 10485750},
   fileFilter: function(req, file, cb){
     checkFileType(file, cb);
   }
@@ -93,6 +93,7 @@ app.post('/upload', (req, res) => {
               //console.log(`uploads/${req.file.filename}`);
               var fileName = req.file.destination + req.file.filename;
               //console.log(req.file);
+
               client
                   .documentTextDetection(fileName)
                   .then(results => {
@@ -100,45 +101,72 @@ app.post('/upload', (req, res) => {
                       //console.log(fullTextAnnotation.text);
                       vision = fullTextAnnotation.text
                       //console.log(vision);
-
-
+                      arr2 = results[0].textAnnotations
                       arr = vision.split('\n')
                       lastElm = false
                       console.log(arr);
+                      // arr3 = []
+                      // for (var j = 0; j < arr2.length; j++) {
+                      //     arr3.append(arr2[j].boundingPoly.vertices)
+                      //
+                      // }
+
                       for (var i = 0; i < arr.length; i++) {
-                          if ((arr[i].includes('[B]') || arr[i].includes('(B)') || arr[i].includes('[B)') || arr[i].includes('(B]')) && arr[i] != '[B]')  {
+
+                        if ((arr[i].includes('[BP]') || arr[i].includes('(BP)') || arr[i].includes('[BP)') || arr[i].includes('(BP]')
+                        || arr[i].includes('(BP') || arr[i].includes('BP)') || arr[i].includes('BP]') || arr[i].includes('[BP') ) && arr[i] != '[BP]')  {
+
+                          arr[i].includes('[BP]') ? arr[i] = `<ul><li>` + arr[i].split('[BP]')[1] + '</li></ul>' : console.log('bp');
+                          arr[i].includes('(BP]') ? arr[i] =  '<ul><li>' + arr[i].split('(BP]')[1] + '</li></ul>' : console.log('');
+                          arr[i].includes('[BP)') ? arr[i] =  '<ul><li>' + arr[i].split('[BP)')[1] + '</li></ul>' : console.log('');
+                          arr[i].includes('(BP)') ? arr[i] =  '<ul><li>' + arr[i].split('(BP)')[1] + '</li></ul>' : console.log('');
+                          arr[i].includes('BP)') ? arr[i] =  '<ul><li>' + arr[i].split('BP)')[1] + '</li></ul>' : console.log('')
+                          arr[i].includes('(BP') ? arr[i] =  '<ul><li>' + arr[i].split('(BP')[1] + '</li></ul>' : console.log('')
+                          arr[i].includes('BP]') ? arr[i] =  '<ul><li>' + arr[i].split('BP]')[1] + '</li></ul>' : console.log('')
+                          arr[i].includes('[BP') ? arr[i] =  '<ul><li>' + arr[i].split('[BP')[1] + '</li></ul>' : console.log('')
+
+                        }
+                          else if ((arr[i].includes('[B]') || arr[i].includes('(B)') || arr[i].includes('[B)') || arr[i].includes('(B]')
+                          || arr[i].includes('(B') || arr[i].includes('B)') || arr[i].includes('B]') || arr[i].includes('[B') ) && arr[i] != '[B]')  {
                           arr[i].includes('[B]') ? arr[i] =  '<button>' + arr[i].split('[B]')[1] + '</button>' : console.log('button')
                           arr[i].includes('(B]') ? arr[i] =  '<button>' + arr[i].split('(B]')[1] + '</button>' : console.log('')
                           arr[i].includes('[B)') ? arr[i] =  '<button>' + arr[i].split('[B)')[1] + '</button>' : console.log('')
                           arr[i].includes('(B)') ? arr[i] =  '<button>' + arr[i].split('(B)')[1] + '</button>' : console.log('')
-
+                          arr[i].includes('B)') ? arr[i] =  '<button>' + arr[i].split('B)')[1] + '</button>' : console.log('')
+                          arr[i].includes('(B') ? arr[i] =  '<button>' + arr[i].split('(B')[1] + '</button>' : console.log('')
+                          arr[i].includes('B]') ? arr[i] =  '<button>' + arr[i].split('B]')[1] + '</button>' : console.log('')
+                          arr[i].includes('[B') ? arr[i] =  '<button>' + arr[i].split('[B')[1] + '</button>' : console.log('')
 
                         }
 
 
-                        if ((arr[i].includes('[H]') || arr[i].includes('(H)') || arr[i].includes('[H)') || arr[i].includes('(H]')) && arr[i] != '[H]') {
+                        else if ((arr[i].includes('[H]') || arr[i].includes('(H)') || arr[i].includes('[H)') || arr[i].includes('(H]')
+                        || arr[i].includes('(H') || arr[i].includes('H)') || arr[i].includes('H]') || arr[i].includes('[H') ) && arr[i] != '[H]')  {
                           arr[i].includes('[H]') ?  arr[i] = '<h1>' + arr[i].split('[H]')[1] + '</h1>' : console.log('')
                           arr[i].includes('(H]') ?  arr[i] = '<h1>' + arr[i].split('(H]')[1] + '</h1>' : console.log('')
                           arr[i].includes('[H)') ?  arr[i] = '<h1>' + arr[i].split('[H)')[1] + '</h1>' : console.log('')
                           arr[i].includes('(H)') ?  arr[i] = '<h1>' + arr[i].split('(H)')[1] + '</h1>' : console.log('')
-
+                          arr[i].includes('H)') ? arr[i] =  '<h1>' + arr[i].split('H)')[1] + '</h1>' : console.log('')
+                          arr[i].includes('(H') ? arr[i] =  '<h1>' + arr[i].split('(H')[1] + '</h1>' : console.log('')
+                          arr[i].includes('H]') ? arr[i] =  '<h1>' + arr[i].split('H]')[1] + '</h1>' : console.log('')
+                          arr[i].includes('[H') ? arr[i] =  '<h1>' + arr[i].split('[H')[1] + '</h1>' : console.log('')
 
                         }
 
-                        if ((arr[i].includes('[IN]') || arr[i].includes('(IN]') || arr[i].includes('[IN)') || arr[i].includes('(IN)')) && arr[i] != '[IN]') {
+                        else if ((arr[i].includes('[IN]') || arr[i].includes('(IN)') || arr[i].includes('[IN)') || arr[i].includes('(IN]')
+                        || arr[i].includes('(IN') || arr[i].includes('IN)') || arr[i].includes('IN]') || arr[i].includes('[IN') ) && arr[i] != '[IN]')  {
                             arr[i].includes('[IN]') ? arr[i] =  '<input placeholder="' + arr[i].split('[IN]')[1] + '"> </input>' : console.log('inp');
                             arr[i].includes('(IN]') ? arr[i] =  '<input placeholder="' + arr[i].split('(IN]')[1] + '"> </input>' : console.log('');
                             arr[i].includes('[IN)') ? arr[i] =  '<input placeholder="' + arr[i].split('[IN)')[1] + '"> </input>' : console.log('');
                             arr[i].includes('(IN)') ? arr[i] =  '<input placeholder="' + arr[i].split('(IN)')[1] + '"> </input>' : console.log('');
+                            arr[i].includes('IN)') ? arr[i] =  '<input placeholder="' + arr[i].split('IN)')[1] + '"> </input>' : console.log('')
+                            arr[i].includes('(IN') ? arr[i] =  '<input placeholder="' + arr[i].split('(IN')[1] + '"> </input>' : console.log('')
+                            arr[i].includes('IN]') ? arr[i] =  '<input placeholder="' + arr[i].split('IN]')[1] + '"> </input>' : console.log('')
+                            arr[i].includes('[IN') ? arr[i] =  '<input placeholder="' + arr[i].split('[IN')[1] + '"> </input>' : console.log('')
 
                         }
 
-                        if ((arr[i].includes('[BP]') || arr[i].includes('(BP]') || arr[i].includes('[BP)') || arr[i].includes('(BP)'))  && arr[i] != '[BP]') {
-                          arr[i].includes('[BP]') ? arr[i] = '<ul><li>' + arr[i].split('[BP]')[1] + '</li></ul>' : console.log('bp');
-                          arr[i].includes('(BP]') ? arr[i] =  '<ul><li>' + arr[i].split('(BP]')[1] + '</li></ul>' : console.log('');
-                          arr[i].includes('[BP)') ? arr[i] =  '<ul><li>' + arr[i].split('[BP)')[1] + '</li></ul>' : console.log('');
-                          arr[i].includes('(BP)') ? arr[i] =  '<ul><li>' + arr[i].split('(BP)')[1] + '</li></ul>' : console.log('');
-                        }
+
 
 
                         }
