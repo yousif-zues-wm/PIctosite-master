@@ -106,12 +106,39 @@ app.post('/upload', (req, res) => {
                       lastElm = false
                       console.log(arr);
                       for (var i = 0; i < arr.length; i++) {
-                        if (arr[i].includes('[B]') && arr[i] != '[B]') {
-                          arr[i] = '<button>' + arr[i].split('[B]')[1] + '</button>'
+                          if ((arr[i].includes('[B]') || arr[i].includes('(B)') || arr[i].includes('[B)') || arr[i].includes('(B]')) && arr[i] != '[B]')  {
+                          arr[i].includes('[B]') ? arr[i] =  '<button>' + arr[i].split('[B]')[1] + '</button>' : console.log('button')
+                          arr[i].includes('(B]') ? arr[i] =  '<button>' + arr[i].split('(B]')[1] + '</button>' : console.log('')
+                          arr[i].includes('[B)') ? arr[i] =  '<button>' + arr[i].split('[B)')[1] + '</button>' : console.log('')
+                          arr[i].includes('(B)') ? arr[i] =  '<button>' + arr[i].split('(B)')[1] + '</button>' : console.log('')
+
+
                         }
 
 
+                        if ((arr[i].includes('[H]') || arr[i].includes('(H)') || arr[i].includes('[H)') || arr[i].includes('(H]')) && arr[i] != '[H]') {
+                          arr[i].includes('[H]') ?  arr[i] = '<h1>' + arr[i].split('[H]')[1] + '</h1>' : console.log('')
+                          arr[i].includes('(H]') ?  arr[i] = '<h1>' + arr[i].split('(H]')[1] + '</h1>' : console.log('')
+                          arr[i].includes('[H)') ?  arr[i] = '<h1>' + arr[i].split('[H)')[1] + '</h1>' : console.log('')
+                          arr[i].includes('(H)') ?  arr[i] = '<h1>' + arr[i].split('(H)')[1] + '</h1>' : console.log('')
 
+
+                        }
+
+                        if ((arr[i].includes('[IN]') || arr[i].includes('(IN]') || arr[i].includes('[IN)') || arr[i].includes('(IN)')) && arr[i] != '[IN]') {
+                            arr[i].includes('[IN]') ? arr[i] =  '<input placeholder="' + arr[i].split('[IN]')[1] + '"> </input>' : console.log('inp');
+                            arr[i].includes('(IN]') ? arr[i] =  '<input placeholder="' + arr[i].split('(IN]')[1] + '"> </input>' : console.log('');
+                            arr[i].includes('[IN)') ? arr[i] =  '<input placeholder="' + arr[i].split('[IN)')[1] + '"> </input>' : console.log('');
+                            arr[i].includes('(IN)') ? arr[i] =  '<input placeholder="' + arr[i].split('(IN)')[1] + '"> </input>' : console.log('');
+
+                        }
+
+                        if ((arr[i].includes('[BP]') || arr[i].includes('(BP]') || arr[i].includes('[BP)') || arr[i].includes('(BP)'))  && arr[i] != '[BP]') {
+                          arr[i].includes('[BP]') ? arr[i] = '<ul><li>' + arr[i].split('[BP]')[1] + '</li></ul>' : console.log('bp');
+                          arr[i].includes('(BP]') ? arr[i] =  '<ul><li>' + arr[i].split('(BP]')[1] + '</li></ul>' : console.log('');
+                          arr[i].includes('[BP)') ? arr[i] =  '<ul><li>' + arr[i].split('[BP)')[1] + '</li></ul>' : console.log('');
+                          arr[i].includes('(BP)') ? arr[i] =  '<ul><li>' + arr[i].split('(BP)')[1] + '</li></ul>' : console.log('');
+                        }
 
 
                         }
@@ -130,6 +157,7 @@ app.post('/upload', (req, res) => {
           visionFunc();
 
       }
+
     }
   });
 });
