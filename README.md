@@ -1,6 +1,6 @@
 # NodeUploads
 
-An example of how to upload images locally with Node.js and Multer.
+Convert pictures of websites to the real thing making building a website fast and easy.
 
 ### Version
 1.0.0
@@ -19,15 +19,8 @@ $ npm install
 To serve in the browser
 
 ```sh
-$ npm start
+$ node app.js
 ```
-
-## App Info
-
-### Author
-
-Brad Traversy
-[Traversy Media](http://www.traversymedia.com)
 
 ### Version
 
