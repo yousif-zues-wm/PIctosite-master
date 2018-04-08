@@ -3,39 +3,68 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Try it yourself editor</title>
+    <title>Website Preview</title>
     <style type="text/css">
         textarea, iframe {
             border: 2px solid #ddd;
             height: 500px;
             width: 100%;
         }
+
+
+
     </style>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body>
+  <div class="container">
+    <nav style="text-align:center" class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">PictoSite</a>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li><a href='/'>Home</a></li>
+              <li class='active'><a href="/upload">Upload</a></li>
+              <li><a href="/help">Guide</a></li>
+        </div><!--/.container-fluid -->
+      </nav>
+
+  </div>
+
+  <br>
+  <h1>Preview</h1><hr>
 <table width="100%" border="0" cellspacing="5" cellpadding="5">
     <tr>
-        <td width="50%" scope="col">&nbsp;</td>
-        <td width="50%" align="left" scope="col">
-            <input onclick="runCode();" type="button" value="Run Code">
-        </td>
-    </tr>
-    <tr>
-        <td><strong>Output</strong><iframe name="targetCode" id="targetCode">
+        <td>
+
+          <button align='right' style='float:right' class='btn btn-success' onclick="runCode();"  type="button" name="button"> <span class='glyphicon glyphicon-play-circle'>  </span> Run Code</button>
+          <iframe name="targetCode" id="targetCode">
             </iframe></td>
         <td>
             <form>
-                <strong>Code</strong>
+              <a href="" onmoseover='download()' id='htmld' download='index.html'> <button class='btn btn-default' type="button" id='html' name="button"> <span class='glyphicon glyphicon-download'> </span> index.html</button></a>
+              <a id='dwn' href="" download>  <button type="button" id='css' class='btn btn-default' name="button"> <span class='glyphicon glyphicon-download'> </span> styles.css</button> </a>
+
                 <textarea name="sourceCode" id="sourceCode">
                         </textarea>
             </form>
+
         </td>
+
     </tr>
 </table>
 <br>
-<button  id='btn'>Red</button>
-<button>Blue</button>
-<button>Green</button>
+<h4>Apply Stylesheet</h4><br>
+<button class='btn btn-danger' id='btn1'>Red</button>
+
 <script type="text/javascript">
     var loc = window.location.href
     arr = loc.split('?vision=')
@@ -61,23 +90,37 @@
         iframe.innerHTML = content;
         iframe.document.close();
         return false;
-
-        runCode()
-    }
-    function red(){
-
-        document.getElementById('sourceCode').value =  document.getElementById('sourceCode').value.replace(/^/, '<style>body{background-color: red}</style>\n')
-        // document.getElementById('targetCode').value =  document.getElementById('targetCode').innerHTML.replace(/^/, '<style>body{background-color: red}</style>\n')
-        // document.getElementById('targetCode').innerHTML =  document.getElementById('targetCode').innerHTML.replace(/^/, '<style>body{background-color: red}</style>\n')
         runCode()
     }
 
+    function css(file){
+      if (document.getElementById('sourceCode').value.includes('<link')) {
+        document.getElementById('sourceCode').value =  document.getElementById('sourceCode').value.replace(document.getElementById('sourceCode').value.split('\n')[0] , '<link rel="stylesheet" href="' + file + '"' +  '>')
+        document.getElementById('css').innerHTML = file
+        document.getElementById('dwn').href = file
+      }
+      else{
+        document.getElementById('sourceCode').value =  document.getElementById('sourceCode').value.replace(/^/, '<link rel="stylesheet" href="red.css">\n')
+        document.getElementById('css').innerHTML = file
+        document.getElementById('dwn').href = file
+      }
+        runCode()
+    }
 
-    document.getElementById('btn').addEventListener('click', function(evt){
-      red()
+
+
+    document.getElementById('btn1').addEventListener('click', function(evt){
+      css('red.css')
     })
 
+    function download(){
+      var a = document.getElementById('htmld')
+      a.href = "data:text/html," + document.getElementById("sourceCode").value;
+}
 
+document.getElementById('htmld').addEventListener('click', function(){
+  download()
+})
 
 </script>
 </body>

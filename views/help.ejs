@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>PictoSite</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style media="screen">
+
+          div.gallery {
+              margin: 5px;
+              border: 1px solid #ccc;
+              float: left;
+              width: 180px;
+          }
+
+          div.gallery:hover {
+              border: 1px solid #777;
+          }
+
+          div.gallery img {
+              width: 100%;
+              height: auto;
+          }
+
+          div.desc {
+              padding: 15px;
+              text-align: center;
+          }
+
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <nav style="text-align:center" class="navbar navbar-default">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="/">PictoSite</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+                <li ><a href='/'>Home</a></li>
+                <li><a href="/upload">Upload</a></li>
+                <li class='active'><a href="/help">Guide</a></li>
+          </div><!--/.container-fluid -->
+        </nav>
+      <div class="jumbotron">
+        <h1>How to use PictoSite</h1><br>
+        <p>Getting started is as easy as 1 - 2 - 3</p>
+      </div>
+
+
+      <div style='margin-left:15rem' class="docsec">
+
+        <h3>Syntax</h3><br>
+        <ul>
+          <li> <code>[H]Foo</code> Creates heading</li>
+          <li> <code>[BP]Foo</code> Creates bullet point</li>
+          <li> <code>[IN]Foo</code> Creates input</li>
+          <li><code>[B]Foo</code> Creates button</li>
+          <li> <code> Anything! </code>Typing anything adds normal text  </li>
+        </ul>
+      </div>
+
+
+
+<div class="" style='margin-left:28.5rem;'>
+
+      <div class="gallery">
+        <a target="_blank" href="lights.jpg">
+          <img src="3.jpg" alt="Northern Lights" width="300" height="200">
+        </a>
+        <div class="desc">Lightweight syntax</div>
+      </div>
+
+      <div class="gallery">
+        <a target="_blank" href="lights.jpg">
+          <img src="5.jpg" alt="Northern Lights" width="300" height="200">
+        </a>
+        <div class="desc">Quick to master</div>
+      </div>
+
+      <div class="gallery">
+        <a target="_blank" href="lights.jpg">
+          <img src="6.jpg" alt="Northern Lights" width="300" height="200">
+        </a>
+        <div class="desc">No code needed</div>
+      </div>
+    </div>
+
+
+
+</div> <br><br>
+  <div class="hit" style='text-align:center'>
+    <a href="/upload"> <button type="button" class='btn btn-lg btn-success' name="button">Get Started</button> </a>
+  </div>
+
+    </div>
+
+  </body>
+</html>

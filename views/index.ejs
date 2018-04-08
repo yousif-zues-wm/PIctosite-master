@@ -4,33 +4,67 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://tympanus.net/Tutorials/CustomFileInputs/css/component.css">
 
   <title>Node File Uploads</title>
 </head>
 <body>
   <div class="container">
-    <h1>File Upload</h1>
+    <nav style="text-align:center" class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">PictoSite</a>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li ><a href='/'>Home</a></li>
+              <li class='active'><a href="/upload">Upload</a></li>
+              <li><a href="/help">Guide</a></li>
+        </div><!--/.container-fluid -->
+      </nav>
+
+
+  <div class="container">
+
+    <div class="jumbotron">
+      <h1>Upload</h1><br>
+      <p>Once you've finished drawing take a picture and upload it to see your website come to life!</p>
+    </div>
+
     <%= typeof msg != 'undefined' ? msg : '' %>
     <form action="/upload" method="POST" enctype="multipart/form-data">
-      <div class="file-field input-field">
-        <div class="btn grey">
-          <span>File</span>
-          <input name="myImage" type="file">
+      <div class="">
+        <div class="">
+          <h3>Select File (.png or .jpg)</h3> <br> <label for="" style='color:#aa0000'>Maxsize: 10Mb</label>
+          <input class='form-control' name="myImage" type="file">
+
+
         </div>
-        <div class="file-path-wrapper">
+        <div style='display:none' class="file-path-wrapper">
           <input class="file-path validate" type="text">
         </div>
       </div>
-      <button type="submit" class="btn">Submit</button>
+      <br>
+      <center>
+      <button class='btn btn-lg btn-success' type="submit" > <span class='glyphicon glyphicon-upload'> </span> Submit</button>
+    </center>
     </form>
     <br>
     <img src="<%= typeof file != 'undefined' ? file : '' %>" class="responsive-img">
     <div id='bound' class='container'>
     <p id='doc'>  <%= typeof vision != 'undefined' ? vision : '' %> </p>
     </div>
-
-
+    <br>
+    <center>
+    <img src="o.png" width='600' height='300' alt="">
+  </center>
 
 
   </div>
@@ -51,6 +85,6 @@
     })
 
   </script>
-
+<script src="//tympanus.net/codrops/adpacks/demoad.js"></script>
 </body>
 </html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>PictoSite</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style media="screen">
+
+          div.gallery {
+              margin: 5px;
+              border: 1px solid #ccc;
+              float: left;
+              width: 180px;
+          }
+
+          div.gallery:hover {
+              border: 1px solid #777;
+          }
+
+          div.gallery img {
+              width: 100%;
+              height: auto;
+          }
+
+          div.desc {
+              padding: 15px;
+              text-align: center;
+          }
+
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <nav style="text-align:center" class="navbar navbar-default">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="/">PictoSite</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+                <li class='active'><a href='/'>Home</a></li>
+                <li><a href="/upload">Upload</a></li>
+                <li><a href="/help">Guide</a></li>
+          </div><!--/.container-fluid -->
+        </nav>
+      <div class="jumbotron">
+        <h1>Welcome to PictoSite!</h1><br>
+        <p>Draw a website and watch it come to life!</p>
+      </div><br>
+
+      <div class="gallery">
+        <a target="_blank" href="fjords.jpg">
+          <img src="1.jpg" alt="Fjords" width="300" height="200">
+        </a>
+        <div class="desc">Easy and versatile</div>
+      </div>
+
+      <div class="gallery">
+        <a target="_blank" href="forest.jpg">
+          <img src="2.jpg" alt="Forest" width="300" height="200">
+        </a>
+        <div class="desc">Build on the go</div>
+      </div>
+
+      <div class="gallery">
+        <a target="_blank" href="lights.jpg">
+          <img src="4.jpg" alt="Northern Lights" width="300" height="200">
+        </a>
+        <div class="desc">Simple collaboration</div>
+      </div>
+
+      <div class="gallery">
+        <a target="_blank" href="lights.jpg">
+          <img src="3.jpg" alt="Northern Lights" width="300" height="200">
+        </a>
+        <div class="desc">Lightweight syntax</div>
+      </div>
+
+      <div class="gallery">
+        <a target="_blank" href="lights.jpg">
+          <img src="5.jpg" alt="Northern Lights" width="300" height="200">
+        </a>
+        <div class="desc">Quick to master</div>
+      </div>
+
+      <div class="gallery">
+        <a target="_blank" href="lights.jpg">
+          <img src="6.jpg" alt="Northern Lights" width="300" height="200">
+        </a>
+        <div class="desc">No code needed</div>
+      </div>
+</div> <br><br>
+  <div class="hit" style='text-align:center'>
+    <a href="/upload"> <button type="button" class='btn btn-lg btn-success' name="button">Get Started</button> </a>
+  </div>
+      <div style='text-align:center;margin-top:5rem;' class="mid">
+        <p>We use custom easy to learn styling for making websites on the go!</p>
+        <p>Check out the <a href="/help">Guide</a> </p><br>
+
+      </div>
+    </div>
+
+  </body>
+</html>
