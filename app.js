@@ -103,12 +103,16 @@ app.post('/upload', (req, res) => {
 
 
                       arr = vision.split('\n')
+                      lastElm = false
                       console.log(arr);
                       for (var i = 0; i < arr.length; i++) {
-                        if (arr[i] == '[B]') {
-                          arr[i] = '<button>Test</button>'
-                          console.log(arr[i]);
+                        if (arr[i].includes('[B]') && arr[i] != '[B]') {
+                          arr[i] = '<button>' + arr[i].split('[B]')[1] + '</button>'
                         }
+
+
+
+
 
                         }
                         vision = ''
