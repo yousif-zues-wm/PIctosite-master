@@ -1,19 +1,84 @@
-<!DOCTYPE html>
+
+<!DOCTYPE HTML>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-  </head>
-  <body>
-    <div id='doc' class="container"><br>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Try it yourself editor</title>
+    <style type="text/css">
+        textarea, iframe {
+            border: 2px solid #ddd;
+            height: 500px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<table width="100%" border="0" cellspacing="5" cellpadding="5">
+    <tr>
+        <td width="50%" scope="col">&nbsp;</td>
+        <td width="50%" align="left" scope="col">
+            <input onclick="runCode();" type="button" value="Run Code">
+        </td>
+    </tr>
+    <tr>
+        <td><strong>Output</strong><iframe name="targetCode" id="targetCode">
+            </iframe></td>
+        <td>
+            <form>
+                <strong>Code</strong>
+                <textarea name="sourceCode" id="sourceCode">
+                        </textarea>
+            </form>
+        </td>
+    </tr>
+</table>
+<br>
+<button  id='btn'>Red</button>
+<button>Blue</button>
+<button>Green</button>
+<script type="text/javascript">
+    var loc = window.location.href
+    arr = loc.split('?vision=')
+    //document.getElementById('doc').innerHTML = decodeURIComponent(arr[1])
+    document.getElementById('sourceCode').innerHTML  = decodeURIComponent(arr[1])
+    function runCode()
+    {
+        var content = document.getElementById('sourceCode').value;
+        var iframe = document.getElementById('targetCode');
+        iframe = (iframe.contentWindow) ? iframe.contentWindow : (iframe.contentDocument.document) ? iframe.contentDocument.document : iframe.contentDocument;
+        iframe.document.open();
+        iframe.document.write(content);
+        iframe.document.close();
+        return false;
+    }
+    runCode()
+    function updateCode()
+    {
+        var content = document.getElementById('sourceCode').innerHTML;
+        var iframe = document.getElementById('targetCode');
+        iframe = (iframe.contentWindow) ? iframe.contentWindow : (iframe.contentDocument.document) ? iframe.contentDocument.document : iframe.contentDocument;
+        iframe.document.open();
+        iframe.innerHTML = content;
+        iframe.document.close();
+        return false;
 
-    </div>
+        runCode()
+    }
+    function red(){
 
-    <script type="text/javascript">
-      var loc = window.location.href
-      arr = loc.split('?vision=')
-      document.getElementById('doc').innerHTML = decodeURIComponent(arr[1])
-    </script>
-  </body>
+        document.getElementById('sourceCode').value =  document.getElementById('sourceCode').value.replace(/^/, '<style>body{background-color: red}</style>\n')
+        // document.getElementById('targetCode').value =  document.getElementById('targetCode').innerHTML.replace(/^/, '<style>body{background-color: red}</style>\n')
+        // document.getElementById('targetCode').innerHTML =  document.getElementById('targetCode').innerHTML.replace(/^/, '<style>body{background-color: red}</style>\n')
+        runCode()
+    }
+
+
+    document.getElementById('btn').addEventListener('click', function(evt){
+      red()
+    })
+
+
+
+</script>
+</body>
 </html>

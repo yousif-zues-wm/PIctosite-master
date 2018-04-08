@@ -107,17 +107,36 @@ app.post('/upload', (req, res) => {
                       console.log(arr);
                       arr3 = []
                       arr4 = []
-                      for (var j = 0; j < arr2.length; j++) {
-                          // arr3.push(arr2[j].boundingPoly.vertices[0])
-                          console.log(arr2[j]);
-                      }
-                      console.log(arr3);
+                      var X = 0
+                      var Y = 0
+
+
                       for (var i = 0; i < arr.length; i++) {
 
                         if ((arr[i].includes('[BP]') || arr[i].includes('(BP)') || arr[i].includes('[BP)') || arr[i].includes('(BP]')
                         || arr[i].includes('(BP') || arr[i].includes('BP)') || arr[i].includes('BP]') || arr[i].includes('[BP') ) && arr[i] != '[BP]')  {
+                          for (var j = 0; j < arr2.length; j++) {
+                              // arr3.push(arr2[j].boundingPoly.vertices[0])
+                              arr4.push(arr[i].split('[BP]')[1].split(' '))
+                              console.log(arr2[j].description);
+                              if (arr2.length -1 == j ) {
 
-                          // arr[i].includes('[BP]') ? arr[i] = `<ul><li style=" margin-top: ` + arr4[i].y + 'px;margin-left:' + arr4[i].x + 'px">' + arr[i].split('[BP]')[1] + '</li></ul>' : console.log('bp');
+                              }
+                                else if (arr2[j].description.includes(arr4[0][0]) && arr2[j + 1].description.includes(arr4[0][1])) {
+                                  console.log(arr[i].split('[BP]')[1]);
+                                  X = parseInt(arr2[j].boundingPoly.vertices[0].x.length) >= 2 ? parseInt(arr2[j].boundingPoly.vertices[0].x) - (parseInt(arr2[j].boundingPoly.vertices[0].x[0]) * 100) : parseInt(arr2[j].boundingPoly.vertices[0].x) - (parseInt(arr2[j].boundingPoly.vertices[0].x[0]) * 10)
+                                  Y = parseInt(arr2[j].boundingPoly.vertices[0].y.length) >= 2 ? parseInt(arr2[j].boundingPoly.vertices[0].y) - (parseInt(arr2[j].boundingPoly.vertices[0].y[0]) * 100) : parseInt(arr2[j].boundingPoly.vertices[0].y) - (parseInt(arr2[j].boundingPoly.vertices[0].y[0]) * 10)
+                                  X >= 600 ? X = 0 : console.log('');
+                                  Y >= 600 ? Y = 0 : console.log('');
+
+                                  arr4 = []
+                                  j = arr2.length - 1
+                              }
+
+
+
+                          }
+                          arr[i].includes('[BP]') ? arr[i] = `<ul><li style=" margin-top: ` + Y + 'px;margin-left:' + X + 'px">' + arr[i].split('[BP]')[1] + '</li></ul>' : console.log('bp');
                           arr[i].includes('(BP]') ? arr[i] =  '<ul><li>' + arr[i].split('(BP]')[1] + '</li></ul>' : console.log('');
                           arr[i].includes('[BP)') ? arr[i] =  '<ul><li>' + arr[i].split('[BP)')[1] + '</li></ul>' : console.log('');
                           arr[i].includes('(BP)') ? arr[i] =  '<ul><li>' + arr[i].split('(BP)')[1] + '</li></ul>' : console.log('');
