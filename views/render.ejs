@@ -45,7 +45,7 @@
     <tr>
         <td>
 
-          <button align='right' style='float:right' class='btn btn-success' onclick="runCode();"  type="button" name="button"> <span class='glyphicon glyphicon-play-circle'>  </span> Run Code</button>
+          <button align='right' style='float:right' class='btn btn-info' onclick="runCode();"  type="button" name="button"> <span class='glyphicon glyphicon-play-circle'>  </span> Run Code</button>
           <iframe name="targetCode" id="targetCode">
             </iframe></td>
         <td>
@@ -63,7 +63,13 @@
 </table>
 <br>
 <h4>Apply Stylesheet</h4><br>
-<button class='btn btn-danger' id='btn1'>Red</button>
+<div class="btn-group">
+  <button class='btn btn-warning' id='btn1'>Cyborg</button>
+  <button class='btn btn-info' id='btn2'>Superhero</button>
+  <button class='btn btn-success' id='btn3'>Minty</button>
+</div>
+
+
 
 <script type="text/javascript">
     var loc = window.location.href
@@ -96,12 +102,12 @@
     function css(file){
       if (document.getElementById('sourceCode').value.includes('<link')) {
         document.getElementById('sourceCode').value =  document.getElementById('sourceCode').value.replace(document.getElementById('sourceCode').value.split('\n')[0] , '<link rel="stylesheet" href="' + file + '"' +  '>')
-        document.getElementById('css').innerHTML = file
+        document.getElementById('css').innerHTML = '<span class="glyphicon glyphicon-download"> </span> ' + file
         document.getElementById('dwn').href = file
       }
       else{
-        document.getElementById('sourceCode').value =  document.getElementById('sourceCode').value.replace(/^/, '<link rel="stylesheet" href="red.css">\n')
-        document.getElementById('css').innerHTML = file
+        document.getElementById('sourceCode').value =  document.getElementById('sourceCode').value.replace(/^/, '<link rel="stylesheet" href=' + file + ' >\n')
+        document.getElementById('css').innerHTML = '<span class="glyphicon glyphicon-download"> </span> ' + file
         document.getElementById('dwn').href = file
       }
         runCode()
@@ -110,7 +116,13 @@
 
 
     document.getElementById('btn1').addEventListener('click', function(evt){
-      css('red.css')
+      css('cyborg.css')
+    })
+    document.getElementById('btn2').addEventListener('click', function(evt){
+      css('superhero.css')
+    })
+    document.getElementById('btn3').addEventListener('click', function(evt){
+      css('minty.css')
     })
 
     function download(){
