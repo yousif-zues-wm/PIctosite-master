@@ -26,7 +26,9 @@
     </form>
     <br>
     <img src="<%= typeof file != 'undefined' ? file : '' %>" class="responsive-img">
-    <%= typeof vision != 'undefined' ? vision : '' %>
+    <div id='bound' class='container'>
+    <p id='doc'>  <%= typeof vision != 'undefined' ? vision : '' %> </p>
+    </div>
 
 
 
@@ -38,7 +40,17 @@
   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
   crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+  <script type="text/javascript">
+    var doc = document.getElementById('doc')
+    var bound = document.getElementById('bound')
+    var bounds
+    bounds = decodeURIComponent(' ')
 
+    bound.addEventListener('onchange', function(evt){
+      bound.innerHTML = doc.textContent
+    })
+
+  </script>
 
 </body>
 </html>

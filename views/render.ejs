@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div id='doc' class="container">
+
+    </div>
+
+    <script type="text/javascript">
+      var loc = window.location.href
+      arr = loc.split('?vision=')
+      document.getElementById('doc').innerHTML = decodeURIComponent(arr[1])
+    </script>
+  </body>
+</html>

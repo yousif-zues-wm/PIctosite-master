@@ -103,20 +103,21 @@ app.post('/upload', (req, res) => {
 
 
                       arr = vision.split('\n')
+                      console.log(arr);
                       for (var i = 0; i < arr.length; i++) {
-                        if (arr[i] == '[b]') {
-                          arr[i] = '<button>Test<button>'
+                        if (arr[i] == '[B]') {
+                          arr[i] = '<button>Test</button>'
                           console.log(arr[i]);
                         }
 
                         }
+                        vision = ''
+                        for (var i = 0; i < arr.length; i++) {
+                          arr[i] = arr[i] + '\n'
+                          vision = vision + arr[i]
+                        }
 
-
-                      res.render('index', {
-                          msg: 'File Uploaded!',
-                          file: `uploads/${req.file.filename}`,
-                          vision: vision
-                      });
+                        res.redirect('/render?file=' + '?vision=' + vision)
                   })
                   .catch(err => {
                       console.error('ERROR:', err);
@@ -128,6 +129,15 @@ app.post('/upload', (req, res) => {
     }
   });
 });
+
+
+app.get('/render', function(req, res){
+
+  res.render('render', {
+    vision: req.param('vision')
+  })
+
+})
 
 const port = 3000;
 
